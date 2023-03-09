@@ -1,0 +1,10 @@
+Head procentage 0.0 
+Head procentage 50.0 
+Head procentage 33.33333333333333 
+Head procentage 25.0 
+Head procentage 40.0 
+Head procentage 50.0 
+Head procentage 57.14285714285714 
+Head procentage 62.5 
+Head procentage 66.66666666666666 
+Head procentage 70.0 
