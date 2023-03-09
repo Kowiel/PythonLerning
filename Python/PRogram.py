@@ -6,9 +6,8 @@ while True:
     print("Would you like to add, remove or see an item add remove see o exit: \n")
     whatToAcces =  input()
     whatToAcces= whatToAcces.strip()
-    match whatToAcces:
-        case "add":
-            item = input("What item to add: ")+"\n"
+    if whatToAcces.startswith('add'):
+            item = whatToAcces.replace('add ','',1)+"\n"
             item=item.title()
 
             with open("data.txt","r") as file:
@@ -19,9 +18,8 @@ while True:
             with open("data.txt","w") as file:
                 file.writelines(todo)
 
-        case "remove":
-             print("What item to did you complite:")
-             item =  int(input())
+    elif whatToAcces.startswith('remove'):
+             item =  int(whatToAcces[7:])
              item-=1
 
              with open("data.txt","r") as file:
@@ -33,7 +31,7 @@ while True:
              with open("data.txt","w") as file:
                 file.writelines(todo)
              
-        case "see":
+    elif  whatToAcces.startswith('remove'):
             with open("data.txt","r") as file:
              todo=file.readlines()
 
@@ -47,11 +45,11 @@ while True:
                 x=x.strip("\n")
                 print(f"{id+1}. {x}")
             
-        case "edit":
+    elif  whatToAcces.startswith('edit'):
             with open("data.txt","r") as file:
              todo=file.readlines()
 
-            edit=int(input("What item to eddit sepcify with number"))
+            edit=int(input(whatToAcces[5:]))
             edit=edit-1
 
             if(todo[edit]!=None):
@@ -61,8 +59,8 @@ while True:
             with open("data.txt","w") as file:
                 file.writelines(todo)
                 
-        case "exit":
+    elif whatToAcces.startswith('exit'):
             break
-        case _:
+    else:
             print("No such option")
         

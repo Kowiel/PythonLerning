@@ -8,3 +8,4 @@ Head procentage 57.14285714285714
 Head procentage 62.5 
 Head procentage 66.66666666666666 
 Head procentage 70.0 
+Head procentage 70.0 
