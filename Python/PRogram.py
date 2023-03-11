@@ -1,5 +1,15 @@
 import time
 
+
+def ReadFile(filename):
+    with open(f"{filename}","r") as file:
+            todo=file.readlines()
+    return todo
+
+def WriteFile(filename , data):
+       with open(f"{filename}","w") as file:
+            file.writelines(data)
+
 print("Your To do list: \n")
 
 while True:
@@ -10,30 +20,25 @@ while True:
             item = whatToAcces.replace('add ','',1)+"\n"
             item=item.title()
 
-            with open("data.txt","r") as file:
-                todo=file.readlines()
+            todo=ReadFile("data.txt")
 
             todo.append(item) 
 
-            with open("data.txt","w") as file:
-                file.writelines(todo)
+            WriteFile("data.txt",todo)
 
     elif whatToAcces.startswith('remove'):
              item =  int(whatToAcces[7:])
              item-=1
 
-             with open("data.txt","r") as file:
-                todo=file.readlines()  
+             todo=ReadFile("data.txt")
              
              print(f"removed the task {todo[item]}")
              todo.pop(item)
 
-             with open("data.txt","w") as file:
-                file.writelines(todo)
+             WriteFile("data,txt",todo)
              
     elif  whatToAcces.startswith('see'):
-            with open("data.txt","r") as file:
-             todo=file.readlines()
+            todo=ReadFile("data.txt")
 
             # new_ToDo = []
             # for itme in todo:
@@ -47,8 +52,7 @@ while True:
             
     elif  whatToAcces.startswith('edit'):
             try:
-                with open("data.txt","r") as file:
-                    todo=file.readlines()
+                todo=ReadFile("data.txt")
 
                 edit=int(whatToAcces[5:])
                 edit=edit-1
@@ -57,8 +61,7 @@ while True:
                     var=input("Change to what?: ")
                     todo[edit]=var+"\n"
 
-                with open("data.txt","w") as file:
-                    file.writelines(todo)
+                WriteFile("data.txt",todo)
             except ValueError:
                  print("Command not valid")
                  continue
