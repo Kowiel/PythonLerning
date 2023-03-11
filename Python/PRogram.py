@@ -31,7 +31,7 @@ while True:
              with open("data.txt","w") as file:
                 file.writelines(todo)
              
-    elif  whatToAcces.startswith('remove'):
+    elif  whatToAcces.startswith('see'):
             with open("data.txt","r") as file:
              todo=file.readlines()
 
@@ -46,19 +46,27 @@ while True:
                 print(f"{id+1}. {x}")
             
     elif  whatToAcces.startswith('edit'):
-            with open("data.txt","r") as file:
-             todo=file.readlines()
+            try:
+                with open("data.txt","r") as file:
+                    todo=file.readlines()
 
-            edit=int(input(whatToAcces[5:]))
-            edit=edit-1
+                edit=int(whatToAcces[5:])
+                edit=edit-1
 
-            if(todo[edit]!=None):
-                var=input("Change to what?: ")
-                todo[edit]=var+"\n"
+                if(todo[edit]!=None):
+                    var=input("Change to what?: ")
+                    todo[edit]=var+"\n"
 
-            with open("data.txt","w") as file:
-                file.writelines(todo)
-                
+                with open("data.txt","w") as file:
+                    file.writelines(todo)
+            except ValueError:
+                 print("Command not valid")
+                 continue
+            except:
+                print("Something else went wrong or number does not exist")
+                continue
+            
+                    
     elif whatToAcces.startswith('exit'):
             break
     else:
