@@ -3,6 +3,7 @@ import urllib
 from requests_html import HTML
 from requests_html import HTMLSession
 import webbrowser
+import webTest
 
 def get_source(url):
     """Return the source code for the provided URL. 
@@ -47,7 +48,4 @@ def scrape_google(query):
 userinput = input("What would you like to see? : ")
 
 Links = scrape_google(userinput)
-print(Links)
-
-for link in Links[:4]:
-    webbrowser.open(link)
+webTest.LookUpThisSides(Links[:4])
