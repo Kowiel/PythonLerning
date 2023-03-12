@@ -1,18 +1,10 @@
-import time
+from datetime import datetime
+import Functions #could also as Func
 
+now = datetime.now()
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
-def ReadFile(filename):
-    """Reads a file and returns a list of tasks that are in the file"""
-    with open(f"{filename}","r") as file:
-            todo=file.readlines()
-    return todo
-
-def WriteFile(filename , data):
-       """Write to the file the data that you provided"""
-       with open(f"{filename}","w") as file:
-            file.writelines(data)
-
-print("Your To do list: \n")
+print(f"Your To do list It is: {dt_string} \n")
 
 while True:
     print("Would you like to add, remove or see an item add remove see o exit: \n")
@@ -22,25 +14,25 @@ while True:
             item = whatToAcces.replace('add ','',1)+"\n"
             item=item.title()
 
-            todo=ReadFile("data.txt")
+            todo=Functions.ReadFile("data.txt")
 
             todo.append(item) 
 
-            WriteFile("data.txt",todo)
+            Functions.WriteFile("data.txt",todo)
 
     elif whatToAcces.startswith('remove'):
              item =  int(whatToAcces[7:])
              item-=1
 
-             todo=ReadFile("data.txt")
+             todo=Functions.ReadFile("data.txt")
              
              print(f"removed the task {todo[item]}")
              todo.pop(item)
 
-             WriteFile("data,txt",todo)
+             Functions.WriteFile("data,txt",todo)
              
     elif  whatToAcces.startswith('see'):
-            todo=ReadFile("data.txt")
+            todo=Functions.ReadFile("data.txt")
 
             # new_ToDo = []
             # for itme in todo:
@@ -54,7 +46,7 @@ while True:
             
     elif  whatToAcces.startswith('edit'):
             try:
-                todo=ReadFile("data.txt")
+                todo=Functions.ReadFile("data.txt")
 
                 edit=int(whatToAcces[5:])
                 edit=edit-1
@@ -63,7 +55,7 @@ while True:
                     var=input("Change to what?: ")
                     todo[edit]=var+"\n"
 
-                WriteFile("data.txt",todo)
+                Functions.WriteFile("data.txt",todo)
             except ValueError:
                  print("Command not valid")
                  continue
@@ -76,4 +68,3 @@ while True:
             break
     else:
             print("No such option")
-        
